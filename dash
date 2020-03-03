@@ -1,0 +1,54 @@
+import pandas as pd
+import dash
+import dash_core_components as dcc
+import dash_html_components as html
+import seaborn as sns 
+
+trace_1 = go.Bar(x = data['Failure Type'].value_counts().index, y = data['Failure Type'].value_counts(),
+                    name = 'count plot')
+layout = go.Layout(title = 'The Count Plot')
+fig = go.Figure(data = [trace_1], layout = layout) 
+
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets) 
+
+colors = {
+    'background': '#111111',
+    'text': '#7FDBFF'
+}
+
+app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
+    html.H1(
+        children='Hello Dash',
+        style={
+            'textAlign': 'center',
+            'color': colors['text']
+        }
+    ),
+
+    html.Div(children='Dash: A web application framework for Python.', style={
+        'textAlign': 'center',
+        'color': colors['text']
+    }),
+
+    dcc.Graph(
+        id='example-graph-2',
+        figure=fig
+    )
+])
+
+if __name__ == '__main__':
+    app.run_server(debug=False) 
+
+
+
+
+https://community.plot.ly/t/drill-down-function-for-graphs-embedded-in-dash-app/12290/5 
+https://github.com/ManaviAgrawal/Recommendation-system/blob/master/MovieRecommendation_Python/Front-end_app.py 
+https://towardsdatascience.com/a-gentle-invitation-to-interactive-visualization-with-dash-a200427ccce9 
+https://plot.ly/python/click-events/ 
+
+
+	
+	
